@@ -52,6 +52,7 @@ document.querySelector('body').style.backgroundColor = '#60b347';
 ## *Editing HTML attributes*
 - .classList gives you access to the class information of that element
     - you can remove class names, add class names, and check if a class name exists
+    - the .toggle() method will remove or add a class name to an element depending if it exists
 ```js
 const modal = document.querySelector('.modal');
 
