@@ -31,6 +31,33 @@ const restaurant = {
   },
 };
 
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(airline.length);
+
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// // get rid of duplicates in the array
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+
+// const rest = new Map();
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Ital');
+// rest.set(2, 'Lisbon, Portugal');
+
+// console.log(rest.get('name'));
+// console.log(rest.has('name'));
+
 // const {name, openingHours, categories} = restaurant;
 // const {name: restaurantName, openingHours: hours, categories: tags} = restaurant;
 // console.log(restaurantName, hours, tags);
@@ -126,4 +153,3 @@ GOOD LUCK 😀
 // for (const [i, num] of arr.entries()) {
 //   console.log(i, num);
 // }
-
