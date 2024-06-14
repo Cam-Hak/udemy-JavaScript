@@ -2,7 +2,7 @@
 
 ## _Destructuring Arrays_
 
-- An efficient way to assing multiple variables to indexes in an array
+- An efficient way to assigning multiple variables to indexes in an array
 - You can skip an element by an empty comma
 
 ```js
@@ -42,7 +42,7 @@ const { name: firstName = "", age: yearsOld = 0, job: currentJob = "" } = obj;
 
 **Mutating Variables into Object Data**
 
-- Needs to be wraped in parenthesis or else Syntax Error
+- Needs to be wrapped in parenthesis or else Syntax Error
 
 ```js
 // assume same object as above
@@ -79,4 +79,27 @@ console.log(...arr);
 
 [x, y, ...others] = arr;
 // prints 1 2 3 4
+```
+## _Short Circuiting_
+- Allows you to set a default value to certain parts of your code
+- When using OR, the first value is returned if its a truthy value
+- You can use AND to only run a function if the first value is truthy
+```js
+const name = null;
+console.log(name || 'Cam'); // first value is falsy, so it will print the truthy value
+
+name = 'Cameron';
+name && giveFood(name, 'pizza');
+```
+
+**Nullish Coalescing Operator**
+- Treats 0s and empty strings as truthy values
+- Treats null and undefined as falsy values
+
+**Logical Assignment Operators**
+- Same context as above, but used to assign values to variables
+```js
+const name = null;
+name ??= 'Cameron';
+// sets name to Cameron if it wasn't previously set
 ```
