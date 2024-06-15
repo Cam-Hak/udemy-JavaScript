@@ -80,9 +80,9 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => (acc += mov), 0);
-  labelBalance.textContent = `${balance} EUR`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => (acc += mov), 0);
+  labelBalance.textContent = `${acc.balance} EUR`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -100,7 +100,7 @@ const calcDisplaySummary = function (acc) {
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
-      console.log(arr);
+      // console.log(arr);
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
@@ -117,6 +117,18 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
+
+const updateUI = function (acc) {
+
+  displayMovements(acc.movements);
+
+  //Dispaly balance
+  calcDisplayBalance(acc);
+
+  //Display summary
+  calcDisplaySummary(acc);
+};
+
 
 let currentAccount;
 
@@ -139,17 +151,44 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Display movements
-    displayMovements(currentAccount.movements);
+    updateUI(currentAccount);
+  };
+});
 
-    //Dispaly balance
-    calcDisplayBalance(currentAccount.movements);
 
-    //Display summary
-    calcDisplaySummary(currentAccount);
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const recieverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    amount > 0 && 
+    recieverAcc &&
+    currentAccount.balance >= amount && 
+    recieverAcc?.username !==  currentAccount.username
+  ) {
+    currentAccount.movements.push(-amount);
+    recieverAcc.movements.push(amount);
+
+    updateUI(currentAccount);
   }
 });
 
+btnClose.addEventListener('click', function(e) {
+  e.preventDefault();
+
+
+  if (inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin) {
+
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+
+    accounts.splice(index, 1);
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
