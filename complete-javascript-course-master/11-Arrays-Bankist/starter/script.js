@@ -107,6 +107,7 @@ const calcDisplaySummary = function (acc) {
   labelSumInterest.textContent = `${interest} EUR`;
 };
 
+// test
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
