@@ -386,3 +386,18 @@ GOOD LUCK 😀
 
 // console.log(calcAverageHumanAge(ages));
 /////////////////////////////////////////////////
+
+const arr = Array.from({ length: 7 }, () => 1);
+console.log(arr);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('EUR', '')),
+  );
+
+  console.log(movementsUI);
+});
